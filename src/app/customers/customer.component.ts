@@ -1,26 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import { Customer } from './customer';
 import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-customer',
   templateUrl: './customer.component.html',
-  styleUrls: ['./customer.component.css']
+  styleUrls: ['./customer.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CustomerComponent implements OnInit {
 
   customerForm: FormGroup | null = null;
   customer = new Customer();
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
+
     this.customerForm = new FormGroup({
       firstName: new FormControl(),
       lastName: new FormControl(),
       email: new FormControl(),
       sendCatalog: new FormControl(true)
     });
+
   }
 
   save(): void {
